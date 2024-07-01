@@ -16,4 +16,8 @@ class CookieListProvider extends ChangeNotifier {
   }
 
   final CookieService _cookieService;
+
+  void deleteCookie(String id) {
+    _cookieService.delete(id).then((_) => {notifyListeners()});
+  }
 }

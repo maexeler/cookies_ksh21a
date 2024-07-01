@@ -13,7 +13,11 @@ class CookieOfTheDayProvider extends ChangeNotifier {
 
   void createNewCookieOfTheDay() {
     var cookies = _cookieService.readAll();
-    _cookieOfTheDay = cookies[Random().nextInt(cookies.length)];
+    if (cookies.isEmpty) {
+      _cookieOfTheDay = _noCookieToDay;
+    } else {
+      _cookieOfTheDay = cookies[Random().nextInt(cookies.length)];
+    }
     notifyListeners();
   }
 

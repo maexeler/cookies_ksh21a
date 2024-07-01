@@ -21,7 +21,8 @@ class CookieService {
 
   /// Delete
   Future<void> delete(String id) async {
-    // todo : delete and save
+    _cookies.removeWhere((element) => element.id == id);
+    return _save();
   }
 
   /// Call load() once before using the service

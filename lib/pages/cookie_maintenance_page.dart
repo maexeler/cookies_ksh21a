@@ -32,15 +32,17 @@ class _CookieListWidget extends StatelessWidget {
     return ListView.builder(
         itemCount: cookieList.length,
         itemBuilder: (BuildContext context, int index) {
-          return Card(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(cookieList[index].wisdom),
-                    Text("- ${cookieList[index].author}")
-                  ]),
+          var cookie = cookieList[index];
+          return ListTile(
+            key: Key(cookie.id),
+            title: Text(cookie.wisdom),
+            subtitle: Text("- ${cookie.author}"),
+            trailing: IconButton(
+              icon: Icon(Icons.delete),
+              onPressed: () {
+                Provider.of<CookieListProvider>(context, listen: false)
+                    .deleteCookie(cookie.id);
+              },
             ),
           );
         });
